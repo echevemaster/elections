@@ -38,6 +38,10 @@ class ElectionForm(wtf.Form):
         ],
         default='range')
 
+    max_votes = wtforms.TextField(
+        'Maximum Range/Votes',
+        [wtforms.validators.optional()])
+
     url = wtforms.TextField(
         'URL<span class="error">*</span>', [
             wtforms.validators.Required(),
@@ -127,7 +131,7 @@ def get_range_voting_form(candidates, max_range):
     return RangeVoting()
 
 
-def get_simple_voting_form(candidates, max_range):
+def get_simple_voting_form(candidates):
     class SimpleVoting(wtf.Form):
         action = wtforms.HiddenField()
 
